@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════ */
+/* KINETIC TEXT SYSTEM                            */
+/* ═══════════════════════════════════════════════ */
+
+/* Primary mask-reveal: text slides up from hidden baseline */
+@keyframes maskRevealUp {
+  from {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Horizontal wipe-in for dividers and separators */
+@keyframes wipeIn {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Smooth long-easing utility class */
+.ease-expo {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Back-nav hover flicker effect */
+@keyframes nav-flicker {
+  0%, 100% { opacity: 1; }
+  4% { opacity: 0.3; }
+  6% { opacity: 1; }
+  8% { opacity: 0.45; }
+  10% { opacity: 1; }
+  50% { opacity: 1; }
+  54% { opacity: 0.35; }
+  56% { opacity: 1; }
+}
+
+.hover-flicker:hover {
+  animation: nav-flicker 2s infinite;
+  color: #FFB300;
+}
+
+/* Ambient page glow pulse */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.55; }
+}
+
+.glow-pulse {
+  animation: glowPulse 6s ease-in-out infinite;
+}
+/* Bulletproof video watermark crop */
+video[src*=".mp4"] {
+  width: 104vw !important;
+  height: 104vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  position: fixed !important;
+  top: -2vh !important;
+  left: -2vw !important;
+  object-fit: cover !important;
+  transform: none !important;
+}
